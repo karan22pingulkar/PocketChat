@@ -1,0 +1,12 @@
+# Node
+node_modules/
+dist/
+
+# Python 
+__pycache__/
+.venv/
+*.pyc
+
+# Env / secrets
+.env
+.env.local
