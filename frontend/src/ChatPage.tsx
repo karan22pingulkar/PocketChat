@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Paperclip, Send, Smile } from "lucide-react";
-import type { Message } from "./types";
+import type { Chat, Message } from "./types";
 import Sidebar from "./Sidebar";
 import "./chat.css";
+
+const chats: Chat[] = [
+    { id: 1, name: "My Notes", preview: "Your private space", time: "" },
+    { id: 2, name: "Links", preview: "Save links to read later", time: "" },
+    { id: 3, name: "Files", preview: "Documents and images", time: "" },
+];
 
 const mockMessages: Message[] = [
     { id: 1, text: "Hey! This is my private space.", createdAt: "10:14 AM", isMine: true },
@@ -11,31 +17,62 @@ const mockMessages: Message[] = [
 ];
 
 export default function ChatPage() {
-    const [messages, setMessages] = useState<Message[]>(mockMessages);
+    const [activeChat, setActiveChat] = useState(1);
+    const [messagesByChat, setMessagesByChat] = useState<Record<number, Message[]>>({
+        1: mockMessages,
+        2: [],
+        3: [],
+    });
     const [text, setText] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+    const [profilePic, setProfilePic] = useState<string | null>(() => localStorage.getItem("profilePic"));
 
-    const emojis = ["😀", "😂", "😍", "👍", "🔥", "🎉", "😭", "🙏"];
     const bottomRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const emojis = ["😀", "😂", "😍", "👍", "🔥", "🎉", "😭", "🙏"];
+
+    const messages = messagesByChat[activeChat] ?? [];
+    const activeChatData = chats.find((c) => c.id === activeChat);
+
+    // sidebar preview + time show the latest message of each chat
+    const sidebarChats = chats.map((c) => {
+        const lastMsg = (messagesByChat[c.id] ?? []).slice(-1)[0];
+        return {
+            ...c,
+            preview: lastMsg
+                ? lastMsg.attachment
+                    ? "📎 " + lastMsg.attachment.fileName
+                    : lastMsg.text
+                : c.preview,
+            time: lastMsg ? lastMsg.createdAt : c.time,
+        };
+    });
 
     // scroll to bottom whenever a new message is added
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
+    function addMessage(newMessage: Message) {
+        setMessagesByChat({
+            ...messagesByChat,
+            [activeChat]: [...messages, newMessage],
+        });
+    }
+
     function sendMessage() {
         if (text.trim() === "") return;
 
-        const newMessage: Message = {
+        addMessage({
             id: Date.now(),
             text: text,
             createdAt: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isMine: true,
-        };
+        });
 
-        setMessages([...messages, newMessage]);
         setText("");
+        setShowEmoji(false);
     }
 
     function handleKeyDown(e: React.KeyboardEvent) {
@@ -48,27 +85,50 @@ export default function ChatPage() {
         const file = e.target.files?.[0];
         if (!file) return;
 
-        const newMessage: Message = {
+        addMessage({
             id: Date.now(),
             text: "",
             createdAt: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isMine: true,
-            attachment: { id: Date.now(), fileName: file.name },
-        };
+            attachment: {
+                id: Date.now(),
+                fileName: file.name,
+                fileUrl: URL.createObjectURL(file),
+                fileType: file.type,
+            },
+        });
 
-        setMessages([...messages, newMessage]);
         e.target.value = ""; // reset so picking the same file twice still works
+    }
+
+    function handlePicSelect(file: File) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const pic = reader.result as string;
+            setProfilePic(pic);
+            localStorage.setItem("profilePic", pic);
+        };
+        reader.readAsDataURL(file);
     }
 
     return (
         <div className="page">
-            <Sidebar />
+            <Sidebar
+                chats={sidebarChats}
+                activeId={activeChat}
+                onSelect={setActiveChat}
+                profilePic={profilePic}
+                onPicSelect={handlePicSelect}
+            />
+
             <div className="chat-window">
                 {/* header */}
                 <div className="chat-header">
-                    <div className="avatar">You</div>
+                    <div className="avatar">
+                        {profilePic ? <img src={profilePic} alt="profile" /> : activeChatData?.name[0]}
+                    </div>
                     <div>
-                        <div className="header-name">My Notes</div>
+                        <div className="header-name">{activeChatData?.name}</div>
                         <div className="header-status">Only visible to you</div>
                     </div>
                 </div>
@@ -77,11 +137,31 @@ export default function ChatPage() {
                 <div className="messages">
                     <div className="date-divider"><span>Today</span></div>
 
+                    {messages.length === 0 && (
+                        <div className="empty-chat">No messages yet. Say hi to yourself!</div>
+                    )}
+
                     {messages.map((msg) => (
                         <div key={msg.id} className={`msg-row ${msg.isMine ? "mine" : ""}`}>
                             <div className="bubble">
                                 {msg.attachment ? (
-                                    <div className="attachment">📎 {msg.attachment.fileName}</div>
+                                    msg.attachment.fileType.startsWith("image/") ? (
+                                        <a href={msg.attachment.fileUrl} target="_blank" rel="noreferrer">
+                                            <img
+                                                className="msg-image"
+                                                src={msg.attachment.fileUrl}
+                                                alt={msg.attachment.fileName}
+                                            />
+                                        </a>
+                                    ) : (
+                                        <a
+                                            className="attachment"
+                                            href={msg.attachment.fileUrl}
+                                            download={msg.attachment.fileName}
+                                        >
+                                            📎 {msg.attachment.fileName}
+                                        </a>
+                                    )
                                 ) : (
                                     msg.text
                                 )}
