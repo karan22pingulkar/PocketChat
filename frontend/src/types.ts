@@ -18,4 +18,5 @@ export interface Chat {
     name: string;
     preview: string;
     time: string;
+    color: string;
 }

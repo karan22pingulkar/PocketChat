@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Paperclip, Send, Smile } from "lucide-react";
+import { CheckCheck, Paperclip, Send, Smile } from "lucide-react";
 import type { Chat, Message } from "./types";
 import Sidebar from "./Sidebar";
 import "./chat.css";
 
 const chats: Chat[] = [
-    { id: 1, name: "My Notes", preview: "Your private space", time: "" },
-    { id: 2, name: "Links", preview: "Save links to read later", time: "" },
-    { id: 3, name: "Files", preview: "Documents and images", time: "" },
+    { id: 1, name: "Saved Messages", preview: "Your private space", time: "", color: "#3390ec" },
+    { id: 2, name: "Links", preview: "Save links to read later", time: "", color: "#50a85b" },
+    { id: 3, name: "Files", preview: "Documents and images", time: "", color: "#e0704a" },
 ];
 
 const mockMessages: Message[] = [
@@ -165,7 +165,10 @@ export default function ChatPage() {
                                 ) : (
                                     msg.text
                                 )}
-                                <div className="msg-time">{msg.createdAt}</div>
+                                <div className="msg-time">
+                                    {msg.createdAt}
+                                    {msg.isMine && <CheckCheck size={13} className="tick" />}
+                                </div>
                             </div>
                         </div>
                     ))}

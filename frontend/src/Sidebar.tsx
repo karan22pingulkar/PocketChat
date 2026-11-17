@@ -64,7 +64,9 @@ export default function Sidebar({ chats, activeId, onSelect, profilePic, onPicSe
                         className={`chat-item ${activeId === chat.id ? "active" : ""}`}
                         onClick={() => onSelect(chat.id)}
                     >
-                        <div className="avatar small">{chat.name[0]}</div>
+                        <div className="avatar small" style={{ background: chat.color }}>
+                            {chat.name[0]}
+                        </div>
                         <div className="chat-item-text">
                             <div className="chat-item-top">
                                 <span className="chat-item-name">{chat.name}</span>
