@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <g fill="none" stroke="#7a5fd0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.22">
+    <path d="M24 36 L54 24 L42 52 L36 42 Z"/>
+    <path d="M118 34 c-3-7-15-7-15 1 c0 7 8 10 15 15 c7-5 15-8 15-15 c0-8-12-8-15-1z"/>
+    <path d="M202 42 l4 10 11 1 -8 7 2 11 -9-6 -9 6 2-11 -8-7 11-1z"/>
+    <rect x="18" y="118" width="34" height="24" rx="8"/>
+    <path d="M26 142 l-4 10 12-8"/>
+    <path d="M148 124 v-22 l14-4 v22"/>
+    <circle cx="144" cy="126" r="5"/>
+    <circle cx="158" cy="122" r="5"/>
+    <circle cx="72" cy="204" r="11"/>
+    <circle cx="72" cy="204" r="4"/>
+    <circle cx="196" cy="176" r="14"/>
+    <path d="M190 172 h.01 M202 172 h.01" stroke-width="4"/>
+    <path d="M190 181 q6 4 12 0"/>
+    <path d="M104 84 l-12 18 h9 l-3 14 14-20 h-9 z"/>
+    <circle cx="210" cy="105" r="10"/>
+    <ellipse cx="210" cy="105" rx="18" ry="5" transform="rotate(-20 210 105)"/>
+    <rect x="60" y="150" width="24" height="20" rx="4"/>
+    <path d="M60 158 h24 M72 150 v20"/>
+    <path d="M30 190 q6-8 12 0 q6-8 12 0"/>
+  </g>
+</svg>
