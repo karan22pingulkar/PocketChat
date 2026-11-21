@@ -30,6 +30,7 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    font-size: 17px;
     overflow: hidden;
     flex-shrink: 0;
 }
@@ -334,7 +335,7 @@
 .avatar.small {
     width: 38px;
     height: 38px;
-    font-size: 13px;
+    font-size: 16px;
     flex-shrink: 0;
 }
 
