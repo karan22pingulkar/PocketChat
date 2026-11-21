@@ -1,23 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
-  <g fill="none" stroke="#7a5fd0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.22">
-    <path d="M24 36 L54 24 L42 52 L36 42 Z"/>
-    <path d="M118 34 c-3-7-15-7-15 1 c0 7 8 10 15 15 c7-5 15-8 15-15 c0-8-12-8-15-1z"/>
-    <path d="M202 42 l4 10 11 1 -8 7 2 11 -9-6 -9 6 2-11 -8-7 11-1z"/>
-    <rect x="18" y="118" width="34" height="24" rx="8"/>
-    <path d="M26 142 l-4 10 12-8"/>
-    <path d="M148 124 v-22 l14-4 v22"/>
-    <circle cx="144" cy="126" r="5"/>
-    <circle cx="158" cy="122" r="5"/>
-    <circle cx="72" cy="204" r="11"/>
-    <circle cx="72" cy="204" r="4"/>
-    <circle cx="196" cy="176" r="14"/>
-    <path d="M190 172 h.01 M202 172 h.01" stroke-width="4"/>
-    <path d="M190 181 q6 4 12 0"/>
-    <path d="M104 84 l-12 18 h9 l-3 14 14-20 h-9 z"/>
-    <circle cx="210" cy="105" r="10"/>
-    <ellipse cx="210" cy="105" rx="18" ry="5" transform="rotate(-20 210 105)"/>
-    <rect x="60" y="150" width="24" height="20" rx="4"/>
-    <path d="M60 158 h24 M72 150 v20"/>
-    <path d="M30 190 q6-8 12 0 q6-8 12 0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
+  <g fill="none" stroke="#7a5fd0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.17">
+
+    <!-- paper plane -->
+    <path d="M20 30 L44 20 L34 46 L28 36 Z"/>
+
+    <!-- sparkle star -->
+    <path d="M70 18 Q71 25 78 27 Q71 29 70 36 Q69 29 62 27 Q69 25 70 18 Z"/>
+
+    <!-- heart -->
+    <path d="M140 60 c-3 -6 -13 -6 -13 1 c0 6 7 9 13 13 c6 -4 13 -7 13 -13 c0 -7 -10 -7 -13 -1 z"/>
+
+    <!-- lightning bolt -->
+    <path d="M220 55 l-11 16 h8 l-3 13 12 -18 h-8 z"/>
+
+    <!-- small star -->
+    <path d="M255 110 l3 7 8 1 -6 5 2 8 -7 -4 -7 4 2 -8 -6 -5 8 -1 Z"/>
+
+    <!-- cloud -->
+    <path d="M30 105 q0 -9 9 -9 q2 -7 9 -7 q8 0 9 8 q7 1 6 8 q-1 6 -8 6 h-18 q-7 -1 -7 -6 z"/>
+
+    <!-- moon -->
+    <path d="M110 130 a12 12 0 1 0 5 23 a9 9 0 1 1 -5 -23 z"/>
+
+    <!-- music note -->
+    <path d="M175 165 v-18 l12 -3 v18"/>
+    <circle cx="172" cy="168" r="4"/>
+    <circle cx="184" cy="165" r="4"/>
+
+    <!-- chat bubble -->
+    <rect x="225" y="175" width="30" height="20" rx="7"/>
+    <path d="M233 195 l-4 9 11 -7"/>
+
+    <!-- smiley -->
+    <path d="M60 165 h.01 M70 165 h.01" stroke-width="4"/>
+    <path d="M57 172 q6 5 12 0"/>
+
+    <!-- donut -->
+    <circle cx="130" cy="235" r="10"/>
+    <circle cx="130" cy="235" r="3"/>
+
+    <!-- flower -->
+    <circle cx="200" cy="235" r="3"/>
+    <circle cx="200" cy="226" r="3.5"/>
+    <circle cx="209" cy="230" r="3.5"/>
+    <circle cx="206" cy="241" r="3.5"/>
+    <circle cx="194" cy="241" r="3.5"/>
+    <circle cx="191" cy="230" r="3.5"/>
+
+    <!-- squiggle -->
+    <path d="M30 230 q5 -7 10 0 q5 -7 10 0"/>
+
   </g>
 </svg>

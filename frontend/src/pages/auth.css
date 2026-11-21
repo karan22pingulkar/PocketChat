@@ -5,8 +5,9 @@
     align-items: center;
     justify-content: center;
     background:
-        url("/doodle.svg"),
+        url("/doodle-art.png"),
         linear-gradient(180deg, var(--bg-chat), var(--bg-chat-bottom));
+    background-size: 6000px, auto;
     padding: 16px;
 }
 
