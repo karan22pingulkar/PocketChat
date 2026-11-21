@@ -494,3 +494,151 @@
 .bubble.big-emoji .tick.seen {
     color: var(--tick);
 }
+
+/* back button only visible on mobile */
+.back-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+/* tablet: slightly narrower sidebar, both panels visible */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .sidebar {
+        width: 260px;
+    }
+
+    .bubble {
+        max-width: 75%;
+    }
+}
+
+/* mobile: show either the chat list OR the chat */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        border-right: none;
+    }
+
+    .page.chat-open .sidebar {
+        display: none;
+    }
+
+    .chat-window {
+        display: none;
+    }
+
+    .page.chat-open .chat-window {
+        display: flex;
+    }
+
+    .back-btn {
+        display: flex;
+    }
+
+    .bubble {
+        max-width: 82%;
+    }
+
+    .messages {
+        padding: 12px;
+    }
+
+    .chat-header {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .composer {
+        padding: 8px 10px;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+        gap: 6px;
+    }
+
+    .composer-input {
+        font-size: 16px; /* stops ios auto-zoom on focus */
+    }
+
+    .search-box {
+        margin: 10px 12px;
+    }
+
+    .emoji-pop {
+        left: 8px;
+        flex-wrap: wrap;
+        max-width: 240px;
+    }
+}
+
+/* app brand row - mobile only */
+.app-brand {
+    display: none;
+}
+
+/* wrapper is invisible on desktop, becomes a row on mobile */
+.sidebar-top {
+    display: contents;
+}
+
+@media (max-width: 768px) {
+    .sidebar-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 6px;
+    }
+
+    .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+    }
+
+    .sidebar-header {
+        border-bottom: none;
+        padding: 8px 12px;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .sidebar-header .avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 15px;
+    }
+
+    .sidebar-header .header-name {
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--text-muted);
+        white-space: nowrap;
+    }
+
+    .sidebar-header .header-status {
+        display: none;
+    }
+
+    .brand-logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .brand-name {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--accent);
+    }
+}

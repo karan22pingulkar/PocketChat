@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Search } from "lucide-react";
+import { MessageCircle, Search } from "lucide-react";
 import type { Chat } from "./types";
 
 interface SidebarProps {
@@ -20,7 +20,15 @@ export default function Sidebar({ chats, activeId, onSelect, profilePic, onPicSe
 
     return (
         <div className="sidebar">
-            <div className="sidebar-header">
+            <div className="sidebar-top">
+                <div className="app-brand">
+                    <div className="brand-logo">
+                        <MessageCircle size={18} />
+                    </div>
+                    <span className="brand-name">PocketChat</span>
+                </div>
+
+                <div className="sidebar-header">
                 <div
                     className="avatar clickable"
                     title="Change profile picture"
@@ -42,6 +50,7 @@ export default function Sidebar({ chats, activeId, onSelect, profilePic, onPicSe
                 <div>
                     <div className="header-name">My Space</div>
                     <div className="header-status">Available</div>
+                </div>
                 </div>
             </div>
 

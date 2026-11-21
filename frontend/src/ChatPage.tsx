@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Check, CheckCheck, Paperclip, Send, Smile } from "lucide-react";
+import { ArrowLeft, Check, CheckCheck, Paperclip, Send, Smile } from "lucide-react";
 import type { Chat, Message } from "./types";
 import Sidebar from "./Sidebar";
 import "./chat.css";
@@ -31,6 +31,7 @@ export default function ChatPage() {
     });
     const [text, setText] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+    const [mobileChatOpen, setMobileChatOpen] = useState(false);
     const [profilePic, setProfilePic] = useState<string | null>(() => localStorage.getItem("profilePic"));
 
     const bottomRef = useRef<HTMLDivElement>(null);
@@ -133,11 +134,14 @@ export default function ChatPage() {
     }
 
     return (
-        <div className="page">
+        <div className={`page ${mobileChatOpen ? "chat-open" : ""}`}>
             <Sidebar
                 chats={sidebarChats}
                 activeId={activeChat}
-                onSelect={setActiveChat}
+                onSelect={(id) => {
+                    setActiveChat(id);
+                    setMobileChatOpen(true);
+                }}
                 profilePic={profilePic}
                 onPicSelect={handlePicSelect}
             />
@@ -145,6 +149,9 @@ export default function ChatPage() {
             <div className="chat-window">
                 {/* header */}
                 <div className="chat-header">
+                    <button className="icon-btn back-btn" onClick={() => setMobileChatOpen(false)}>
+                        <ArrowLeft size={20} />
+                    </button>
                     <div className="avatar">
                         {profilePic ? <img src={profilePic} alt="profile" /> : activeChatData?.name[0]}
                     </div>
