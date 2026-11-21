@@ -1,14 +1,16 @@
+/* THEME COLORS - edit values here to restyle the whole app.
+   Main accent (muted violet): #7a5fd0 */
 :root {
-    --accent: #863bff;
-    --accent-hover: #7430e8;
-    --accent-soft: #f0e9ff;
-    --accent-ring: #d6c4ff;
-    --accent-glow: rgba(134, 59, 255, 0.35);
+    --accent: #7a5fd0;
+    --accent-hover: #6b51c0;
+    --accent-soft: #efeafc;
+    --accent-ring: #d3c9f3;
+    --accent-glow: rgba(122, 95, 208, 0.35);
 
-    --bubble-out: #ffe8d4;
+    --bubble-out: #7a5fd0;
     --bubble-in: #ffffff;
-    --bubble-tail: #ffe8d4;
-    --tick: #e88f4d;
+    --bubble-tail: #7a5fd0;
+    --tick: #4fbf6b;
 
     --bg-page: #eef2f6;
     --bg-chat: #e9eef4;

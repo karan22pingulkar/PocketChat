@@ -97,7 +97,7 @@
     border: 1px solid var(--border);
     padding: 10px 14px;
     border-radius: 14px;
-    font-size: 14px;
+    font-size: 15.5px;
     line-height: 1.4;
     position: relative;
     box-shadow: var(--shadow-bubble);
@@ -106,7 +106,7 @@
 .msg-row.mine .bubble {
     background: var(--bubble-out);
     border: none;
-    color: var(--text-main);
+    color: #ffffff;
     border-radius: 14px 14px 4px 14px;
 }
 
@@ -122,14 +122,23 @@
 }
 
 .msg-row.mine .msg-time {
-    color: var(--text-muted);
-    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.85);
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    margin-left: auto;
 }
 
 .tick {
     margin-left: 3px;
     vertical-align: -2px;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s;
 }
 
 .tick.seen {
@@ -366,4 +375,122 @@
 .emoji-pop button:hover {
     background: var(--bg-input);
     transform: scale(1.25);
+}
+
+/* animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes msgIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* page fade in on load */
+.page {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* new messages slide up into place */
+.msg-row .bubble {
+    animation: msgIn 0.25s ease-out;
+}
+
+/* emoji popup pops in */
+.emoji-pop {
+    animation: popIn 0.15s ease-out;
+    transform-origin: bottom left;
+}
+
+/* sidebar chats stagger in on load */
+.chat-item {
+    animation: slideIn 0.3s ease-out backwards;
+}
+
+.chat-item:nth-child(1) { animation-delay: 0.03s; }
+.chat-item:nth-child(2) { animation-delay: 0.08s; }
+.chat-item:nth-child(3) { animation-delay: 0.13s; }
+.chat-item:nth-child(4) { animation-delay: 0.18s; }
+.chat-item:nth-child(5) { animation-delay: 0.23s; }
+.chat-item:nth-child(6) { animation-delay: 0.28s; }
+
+/* date divider gently appears */
+.date-divider {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* emoji-only messages: big emoji, no bubble (whatsapp/telegram style) */
+.msg-row.mine .bubble.big-emoji {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 34px;
+    line-height: 1.1;
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.msg-row.mine .bubble.big-emoji::after {
+    display: none;
+}
+
+.bubble.big-emoji .msg-time {
+    color: var(--text-main);
+    font-size: 10px;
+    margin-top: 4px;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.bubble.big-emoji .tick {
+    color: var(--text-muted);
+}
+
+.bubble.big-emoji .tick.seen {
+    color: var(--tick);
 }

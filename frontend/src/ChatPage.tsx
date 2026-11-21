@@ -10,6 +10,12 @@ const chats: Chat[] = [
     { id: 3, name: "Files", preview: "Documents and images", time: "", color: "#f0a06e" },
 ];
 
+// true if the message is just emoji(s), no text
+function isEmojiOnly(text: string) {
+    const trimmed = text.trim();
+    return trimmed.length > 0 && trimmed.length <= 6 && /^[\p{Extended_Pictographic}\u200d\ufe0f\s]+$/u.test(trimmed);
+}
+
 const mockMessages: Message[] = [
     { id: 1, text: "Hey! This is my private space.", createdAt: "10:14 AM", isMine: true, status: "seen" },
     { id: 2, text: "I can save notes, links and files here.", createdAt: "10:15 AM", isMine: true, status: "seen" },
@@ -158,7 +164,7 @@ export default function ChatPage() {
 
                     {messages.map((msg) => (
                         <div key={msg.id} className={`msg-row ${msg.isMine ? "mine" : ""}`}>
-                            <div className="bubble">
+                            <div className={`bubble ${msg.text && isEmojiOnly(msg.text) ? "big-emoji" : ""}`}>
                                 {msg.attachment ? (
                                     msg.attachment.fileType.startsWith("image/") ? (
                                         <a href={msg.attachment.fileUrl} target="_blank" rel="noreferrer">
