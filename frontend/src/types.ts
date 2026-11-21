@@ -10,6 +10,7 @@ export interface Message {
     text: string;
     createdAt: string;
     isMine: boolean;
+    status: "sent" | "delivered" | "seen";
     attachment?: Attachment;
 }
 

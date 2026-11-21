@@ -121,13 +121,19 @@
 }
 
 .msg-row.mine .msg-time {
-    color: var(--tick);
+    color: var(--text-muted);
     opacity: 0.9;
 }
 
 .tick {
     margin-left: 3px;
     vertical-align: -2px;
+    color: var(--text-muted);
+}
+
+.tick.seen {
+    color: var(--tick);
+    opacity: 1;
 }
 
 .msg-time {

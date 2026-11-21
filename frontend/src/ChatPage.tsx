@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CheckCheck, Paperclip, Send, Smile } from "lucide-react";
+import { Check, CheckCheck, Paperclip, Send, Smile } from "lucide-react";
 import type { Chat, Message } from "./types";
 import Sidebar from "./Sidebar";
 import "./chat.css";
@@ -11,9 +11,9 @@ const chats: Chat[] = [
 ];
 
 const mockMessages: Message[] = [
-    { id: 1, text: "Hey! This is my private space.", createdAt: "10:14 AM", isMine: true },
-    { id: 2, text: "I can save notes, links and files here.", createdAt: "10:15 AM", isMine: true },
-    { id: 3, text: "It will sync across my devices once the backend is ready.", createdAt: "10:16 AM", isMine: true },
+    { id: 1, text: "Hey! This is my private space.", createdAt: "10:14 AM", isMine: true, status: "seen" },
+    { id: 2, text: "I can save notes, links and files here.", createdAt: "10:15 AM", isMine: true, status: "seen" },
+    { id: 3, text: "It will sync across my devices once the backend is ready.", createdAt: "10:16 AM", isMine: true, status: "seen" },
 ];
 
 export default function ChatPage() {
@@ -54,11 +54,24 @@ export default function ChatPage() {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
+    function updateStatus(messageId: number, status: Message["status"]) {
+        setMessagesByChat((prev) => ({
+            ...prev,
+            [activeChat]: (prev[activeChat] ?? []).map((m) =>
+                m.id === messageId ? { ...m, status } : m
+            ),
+        }));
+    }
+
     function addMessage(newMessage: Message) {
-        setMessagesByChat({
-            ...messagesByChat,
-            [activeChat]: [...messages, newMessage],
-        });
+        setMessagesByChat((prev) => ({
+            ...prev,
+            [activeChat]: [...(prev[activeChat] ?? []), newMessage],
+        }));
+
+        // whatsapp style: sent -> delivered -> seen
+        setTimeout(() => updateStatus(newMessage.id, "delivered"), 700);
+        setTimeout(() => updateStatus(newMessage.id, "seen"), 1600);
     }
 
     function sendMessage() {
@@ -69,6 +82,7 @@ export default function ChatPage() {
             text: text,
             createdAt: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isMine: true,
+            status: "sent",
         });
 
         setText("");
@@ -90,6 +104,7 @@ export default function ChatPage() {
             text: "",
             createdAt: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isMine: true,
+            status: "sent",
             attachment: {
                 id: Date.now(),
                 fileName: file.name,
@@ -167,7 +182,15 @@ export default function ChatPage() {
                                 )}
                                 <div className="msg-time">
                                     {msg.createdAt}
-                                    {msg.isMine && <CheckCheck size={13} className="tick" />}
+                                    {msg.isMine &&
+                                        (msg.status === "sent" ? (
+                                            <Check size={13} className="tick" />
+                                        ) : (
+                                            <CheckCheck
+                                                size={13}
+                                                className={`tick ${msg.status === "seen" ? "seen" : ""}`}
+                                            />
+                                        ))}
                                 </div>
                             </div>
                         </div>
