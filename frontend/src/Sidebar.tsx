@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { MessageCircle, Search } from "lucide-react";
+import { LogOut, MessageCircle, Search } from "lucide-react";
+import { useAuth } from "./auth/AuthContext";
 import type { Chat } from "./types";
 
 interface SidebarProps {
@@ -13,6 +14,7 @@ interface SidebarProps {
 export default function Sidebar({ chats, activeId, onSelect, profilePic, onPicSelect }: SidebarProps) {
     const [search, setSearch] = useState("");
     const picInputRef = useRef<HTMLInputElement>(null);
+    const { logout } = useAuth();
 
     const filteredChats = chats.filter((c) =>
         c.name.toLowerCase().includes(search.toLowerCase())
@@ -85,6 +87,12 @@ export default function Sidebar({ chats, activeId, onSelect, profilePic, onPicSe
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="sidebar-footer">
+                <button className="icon-btn" title="Log out" onClick={logout}>
+                    <LogOut size={18} />
+                </button>
             </div>
         </div>
     );
