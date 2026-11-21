@@ -1,27 +1,27 @@
 :root {
-    --accent: #4a90e2;
-    --accent-hover: #3d7fc7;
-    --accent-soft: #e8f1fc;
-    --accent-ring: #c9e2f7;
-    --accent-glow: rgba(74, 144, 226, 0.35);
+    --accent: #7b6ef6;
+    --accent-hover: #6a5fe0;
+    --accent-soft: #eeecfd;
+    --accent-ring: #d8d3fb;
+    --accent-glow: rgba(123, 110, 246, 0.35);
 
-    --bubble-out: #dcf2cf;
+    --bubble-out: #ffe8d4;
     --bubble-in: #ffffff;
-    --bubble-tail: #dcf2cf;
-    --tick: #58b368;
+    --bubble-tail: #ffe8d4;
+    --tick: #e88f4d;
 
-    --bg-page: #eef2f6;
-    --bg-chat: #e9eef4;
-    --bg-chat-bottom: #e3eaf2;
+    --bg-page: #f4f2fb;
+    --bg-chat: #f3f1fa;
+    --bg-chat-bottom: #ece9f6;
     --bg-panel: #ffffff;
-    --bg-hover: #f4f7fb;
-    --bg-input: #f3f5f9;
+    --bg-hover: #f6f4fc;
+    --bg-input: #f4f2fa;
 
-    --text-main: #26323d;
-    --text-muted: #7d8b99;
+    --text-main: #2d2a3d;
+    --text-muted: #8884a0;
 
-    --border: #e4e9ef;
-    --shadow-bubble: 0 1px 2px rgba(16, 35, 47, 0.08);
+    --border: #e7e4f2;
+    --shadow-bubble: 0 1px 2px rgba(30, 25, 60, 0.08);
 }
 
 * {

@@ -5,9 +5,9 @@ import Sidebar from "./Sidebar";
 import "./chat.css";
 
 const chats: Chat[] = [
-    { id: 1, name: "Saved Messages", preview: "Your private space", time: "", color: "#5aa2e8" },
-    { id: 2, name: "Links", preview: "Save links to read later", time: "", color: "#6cb87f" },
-    { id: 3, name: "Files", preview: "Documents and images", time: "", color: "#ef9068" },
+    { id: 1, name: "Saved Messages", preview: "Your private space", time: "", color: "#8a7ff0" },
+    { id: 2, name: "Links", preview: "Save links to read later", time: "", color: "#5bbfa8" },
+    { id: 3, name: "Files", preview: "Documents and images", time: "", color: "#f0a06e" },
 ];
 
 const mockMessages: Message[] = [
